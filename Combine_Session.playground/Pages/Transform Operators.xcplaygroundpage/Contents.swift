@@ -55,6 +55,19 @@ Just("Directory name that does not exist")
           receiveValue: { print($0) })
     .store(in: &subscriptions)
 
+//: ![](flatmap.png)
+//: ## flatMap(maxPublishers:_:)
+struct User {
+   let name: CurrentValueSubject<String, Never>
+}
 
+let userSubject = PassthroughSubject<User, Never>()
+        
+userSubject
+   .map { $0.name } // 🛑 Oops, compilation error here
+   .sink { print($0) }
+
+let user = User(name: .init("Me"))
+userSubject.send(user)
 
 //: [Filtering Operator](@next)
