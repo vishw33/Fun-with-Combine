@@ -12,6 +12,7 @@ import Combine
 
 //: ![](Sub.png)
 
+//: ### Start your code
 let publisher = ["Hello Combine"].publisher
 
 let subscriber = Subscribers.Sink<String ,Never>(receiveCompletion: { (completion) in
