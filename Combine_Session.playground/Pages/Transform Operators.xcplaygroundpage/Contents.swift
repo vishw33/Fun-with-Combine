@@ -63,7 +63,7 @@ struct User {
 let userSubject = PassthroughSubject<User, Never>()
         
 userSubject
-   .map { $0.name } // 🛑 Oops, compilation error here
+   .flatMap { $0.name } // 🛑 Oops, compilation error here
    .sink { print($0) }
 
 let user = User(name: .init("Me"))
