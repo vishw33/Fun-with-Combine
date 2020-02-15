@@ -32,8 +32,8 @@ _ = publisher
     })
 
 //:  # Mapping Values
-//: ![](Map.png)
 //: ## map(_:)
+//: ![](Map.png)
 //: collect operator will collect all the value emitted my publisher
 func square(val:Int) -> Int {
     return val * val
@@ -53,9 +53,8 @@ Just("Directory name that does not exist")
           receiveValue: { print($0) })
     .store(in: &subscriptions)
 
-//: ![](flatmap.png)
 //: ## flatMap(maxPublishers:_:)
-
+//: ![](flatmap.png)
 struct User {
    let name: CurrentValueSubject<String, Never>
 }
@@ -70,8 +69,8 @@ let user = User(name: .init("Me"))
 userSubject.send(user)
 
 //:  # Replacing Up Stream
-//: ![](ReplaceNil.png)
 //: ## replaceNil(with:)
+//: ![](ReplaceNil.png)
 //: replace the upstream value with given value
 
 let nilArray = [1,nil,2,nil].publisher
@@ -85,8 +84,8 @@ _ = nilArray.replaceNil(with: -1).map{
     print(val)
 })
 
-//: ![](ReplaceEmpty.png)
 //: ## replaceEmpty(with:)
+//: ![](ReplaceEmpty.png)
 //: replace the upstream value with given value
 let empty = Empty<Int, Never>()
   
@@ -97,8 +96,8 @@ let empty = Empty<Int, Never>()
           receiveValue: { print($0) })
     .store(in: &subscriptions)
 
-//: ![](Scan.png)
 //: ## scan(_:_:)
+//: ![](Scan.png)
 //: It will provide the current value emitted by an upstream publisher to a closure, along with the last value returned by that closure
 _ = publisher.scan(0){
     $0 + $1
