@@ -1,4 +1,4 @@
-//: [Previous](@previous)
+//: [Combining Operator](@previous)
 
 import Foundation
 

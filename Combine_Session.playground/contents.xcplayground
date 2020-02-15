@@ -10,5 +10,6 @@
         <page name='Transform Operators'/>
         <page name='Filtering Operators'/>
         <page name='Combining Operators'/>
+        <page name='Advance Operators'/>
     </pages>
 </playground>

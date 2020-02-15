@@ -4,7 +4,7 @@ import Foundation
 import Combine
 
 
-var examplePublisher = [20 ,1,3,4,5,10,20,15,17,19].publisher
+var examplePublisher = [1,3,4,5,10,20,15,17,19].publisher
 var subscriptions = Set<AnyCancellable>()
 
 _ = examplePublisher.collect().sink(receiveValue: { (val) in

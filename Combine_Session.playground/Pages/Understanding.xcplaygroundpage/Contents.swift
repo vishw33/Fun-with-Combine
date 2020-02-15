@@ -8,11 +8,9 @@
  3. The subscriber requests values.
  4. The publisher sends values.
  5. The publisher sends a completion.
-
  */
 
 //:Internal Structure of [Publisher](https://developer.apple.com/documentation/combine/publisher)
-
 //: Internal Structure of  [Subscriber](https://developer.apple.com/documentation/combine/subscriber)
 
 //: [Subjects](@next)
