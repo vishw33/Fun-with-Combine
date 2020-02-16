@@ -80,4 +80,4 @@ z2.send(completion: .finished)
 
 
 
-//: [Next](@next)
+//: [DataTask Publisher](@next)
