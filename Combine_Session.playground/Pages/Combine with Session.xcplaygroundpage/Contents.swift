@@ -41,4 +41,44 @@ cancellable = URLSession.shared.dataTaskPublisher(for: url)
     print("combine \(posts.count)")
 })
 
+//: #  Session Coading with Combine with Error Handling
+
+var cancellableError = URLSession.shared.dataTaskPublisher(for: url)
+.tryMap { output in
+    guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
+        print("ERRRRRROR")
+        throw HTTPError.statusCode
+    }
+    return output.data
+}
+.decode(type: [Post].self, decoder: JSONDecoder())
+.eraseToAnyPublisher()
+.sink(receiveCompletion: { completion in
+    switch completion {
+    case .finished:
+        break
+    case .failure(let error):
+        fatalError("This is description = \(error.localizedDescription)")
+    }
+}, receiveValue: { posts in
+    print("Error Handling = \(posts.count)")
+})
+
+//: # using Assign
+class Example {
+public var posts: [Post] = [] {
+      didSet {
+          print("posts --> \(posts.count)")
+      }
+  }
+}
+let obj = Example()
+
+var cancellableAssign = URLSession.shared.dataTaskPublisher(for: url)
+    .map{$0.data}
+    .decode(type: [Post].self, decoder: JSONDecoder())
+.replaceError(with: [])
+.eraseToAnyPublisher()
+    .assign(to: \.posts, on: obj)
+
 //: [Next](@next)
