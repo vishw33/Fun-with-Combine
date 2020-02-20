@@ -81,4 +81,28 @@ var cancellableAssign = URLSession.shared.dataTaskPublisher(for: url)
 .eraseToAnyPublisher()
     .assign(to: \.posts, on: obj)
 
+
+//: # Grouping multiple requests
+let url1 = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+let url2 = URL(string: "https://jsonplaceholder.typicode.com/todos")!
+
+let publisher1 = URLSession.shared.dataTaskPublisher(for: url1)
+.map { $0.data }
+.decode(type: [Post].self, decoder: JSONDecoder())
+
+let publisher2 = URLSession.shared.dataTaskPublisher(for: url2)
+.map { $0.data }
+.decode(type: [Todo].self, decoder: JSONDecoder())
+
+let cancellableGroup = Publishers.Zip(publisher1, publisher2)
+.eraseToAnyPublisher()
+.catch { _ in
+    Just(([], []))
+}
+.sink(receiveValue: { posts, todos in
+    print(posts.count)
+    print(todos.count)
+})
+
+
 //: [Next](@next)
