@@ -12,5 +12,6 @@
         <page name='Combining Operators'/>
         <page name='Advance Operators'/>
         <page name='Combine with Session'/>
+        <page name='Customization'/>
     </pages>
 </playground>
