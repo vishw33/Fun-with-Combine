@@ -15,23 +15,14 @@ import Combine
 //: ### Start your code
 let publisher = ["Hello Combine"].publisher
 
-let subscriber = Subscribers.Sink<String ,Never>(receiveCompletion: { (completion) in
-        switch completion {
-    case .finished:
-        print("Finished")
-    case .failure(_):
-        print("Failed")
-    }
-}) { (val) in
-    print("string Value :-  \(val)")
-}
+
 
 //:  Publisher subscribes to subscribers
-publisher.subscribe(subscriber)
+
 
 //: Subscriber can be subscribed to only one publisher
 let  publisher2 = ["Combine Again!"].publisher
-publisher2.subscribe(subscriber)
+
 
 /*:
 ## The rules of a subscription

@@ -25,11 +25,7 @@ _ = publisher.sink(receiveValue: { (val) in
 })
 
 //: using Operator
-_ = publisher
-    .collect()
-    .sink(receiveValue: { (val) in
-        print(val)
-    })
+
 
 //:  # Mapping Values
 //: ## map(_:)
@@ -39,11 +35,7 @@ func square(val:Int) -> Int {
     return val * val
 }
 
-_ = publisher.map{
-    square(val: $0)
-    }.collect().sink(receiveValue: { (val) in
-    print(val)
-})
+
 //: ## tryMap(_:)
 //: Try Map is same as map but it gives room for error handling and send another publisher in case of error
 //: ## Just error Example
@@ -74,15 +66,9 @@ userSubject.send(user)
 //: replace the upstream value with given value
 
 let nilArray = [1,nil,2,nil].publisher
-_ = nilArray.replaceNil(with: -1).sink(receiveValue: { (val) in
-    print(val)
-})
+
 //: one place Map can be explained better
-_ = nilArray.replaceNil(with: -1).map{
-    Int($0)
-}.sink(receiveValue: { (val) in
-    print(val)
-})
+
 
 //: ## replaceEmpty(with:)
 //: ![](ReplaceEmpty.png)
