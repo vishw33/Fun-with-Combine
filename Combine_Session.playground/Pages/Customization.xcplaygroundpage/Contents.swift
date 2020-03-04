@@ -1,4 +1,4 @@
-//: [Previous](@previous)
+//: [Combine with Sessions](@previous)
 
 import Foundation
 import Combine
@@ -45,4 +45,4 @@ final class IntSubscriber:Subscriber {
 }
 let subscriber = IntSubscriber()
 publisher.subscribe(subscriber)
-//: [Next](@next)
+//: [Conclusion](@next)
